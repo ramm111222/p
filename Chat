@@ -1,0 +1,76 @@
+UDPserver.java
+import java.io.*;
+import java.net.*;
+class UDPserver
+{
+public static DatagramSocket ds;
+public static byte buffer[]=new byte[1024];
+public static int clientport=789,serverport=790;
+public static void main(String args[])throws Exception
+{
+ds=new DatagramSocket(clientport);
+System.out.println("press ctrl+c to quit the program");
+BufferedReader dis=new BufferedReader(new InputStreamReader(System.in));
+InetAddress ia=InetAddress.geyLocalHost();
+while(true)
+{
+DatagramPacket p=new DatagramPacket(buffer,buffer.length);
+ds.receive(p);
+String psx=new String(p.getData(),0,p.getLength());
+System.out.println("Client:" + psx);
+System.out.println("Server:");
+String str=dis.readLine();
+if(str.equals("end"))
+break;
+buffer=str.getBytes();
+ds.send(new DatagramPacket(buffer,str.length(),ia,serverport));
+}
+}
+}
+UDPclient.java
+import java .io.*;
+import java.net.*;
+class UDPclient
+{
+public static DatagramSocket ds;
+public static int clientport=789,serverport=790;
+public static void main(String args[])throws Exception
+{
+byte buffer[]=new byte[1024];
+ds=new DatagramSocket(serverport);
+BufferedReader dis=new BufferedReader(new InputStreamReader(System.in));
+System.out.println("server waiting");
+InetAddress ia=InetAddress.getLocalHost();
+while(true)
+{
+System.out.println("Client:");
+String str=dis.readLine();
+if(str.equals("end"))
+break;
+buffer=str.getBytes();
+ds.send(new DatagramPacket(buffer,str.length(),ia,clientport));
+DatagramPacket p=new DatagramPacket(buffer,buffer.length);
+ds.receive(p);
+String psx=new String(p.getData(),0,p.getLength());
+System.out.println("Server:" + psx);
+}
+}
+}
+OUTPUT:
+Server
+C:\Program Files\Java\jdk1.5.0\bin>javac UDPserver.java
+C:\Program Files\Java\jdk1.5.0\bin>java UDPserver
+press ctrl+c to quit the program
+Client:Hai Server
+Server:Hello Client
+Client:How are You
+Server:I am Fine 
+Client
+C:\Program Files\Java\jdk1.5.0\bin>javac UDPclient.java
+C:\Program Files\Java\jdk1.5.0\bin>java UDPclient
+server waiting
+Client:Hai Server
+Server:Hello Clie
+Client:How are You
+Server:I am Fine 
+Client:end
