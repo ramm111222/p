@@ -1,0 +1,59 @@
+import socket
+
+hostname socket.gethostname()
+
+ipaddr="127.0.0.1"
+
+s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+addr= (ipaddr, 1234)
+
+c = "Y"
+
+while c.upper() == "Y":
+
+req_domain= input("Enter domain name for which the ip is needed:")
+
+sends.sendto(req_domain.encode().addr) data, address srecvfrom(1024)
+
+reply_ip data.decode().strip)
+
+print("The ip for the domain name
+
+(req_domain): (reply_ip}")
+
+c (input("Continue? (y/n)"))
+
+s.close()
+
+import socket
+
+dns_table("www.google.com":"192.165.1.1",
+
+"www.youtube.com":"192.165.1.2".
+
+"www.python.org":"192.165.1.3",
+
+"www.aurcc.ac.in":"192.165.1.4",
+
+"www.amazon.in":"192.165.1.5",
+
+"www.gmail.com":"192.165.1.6")
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+print("Starting Server...")
+
+s.bind(("127.0.0.1",1234))
+
+while True:
+
+data, addresss.recvfrom(1024)
+
+print("(address) wants to fetch data!")
+
+data data.decode()
+
+ip=dns_table.get(data, "Not Found!").encode()
+
+sends.sendto(ip, address)
