@@ -1,0 +1,59 @@
+Client
+
+Server
+
+import socket
+
+import sys
+
+client=socket.socket(socket.AF_INET, sock et.SOCK_STREAM)
+
+server_address (localhost, 10000)
+
+client.connect(server_address)
+
+file_name=client.recv(1000).decode()
+
+file_name="hello"+file_name
+
+file open(file_name, "wb")
+
+data client.recv(4097)
+
+file.write(data)
+
+file.close()
+
+client.close()
+
+import socket
+
+import sys
+
+server-socket.socket(socket.AF_INET, socket.S
+
+OCK_STREAM)
+
+server_address=(localhost", 10000)
+
+server.bind(server_address)
+
+server.listen(1)
+
+connection, client_address-server.accept()
+
+file_name="sample.txt"
+
+connection.sendall(file_name.encode())
+
+file-open("sample.txt","rb")
+
+data=file.read()
+
+connection.sendall(data)
+
+file.close()
+
+connection.close()
+
+server.close()
