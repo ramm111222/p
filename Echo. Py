@@ -1,0 +1,55 @@
+Echo Client
+
+import socket
+
+import sys
+
+client-socket.socket(socket.AF_INET, sock et.SOCK_STREAM)
+
+server_address=("localhost", 10000)
+
+client.connect(server_address)
+
+message=input()
+
+print("Sending", message)
+
+client.sendall(message.encode())
+
+print("ORIGINAL:",message)
+
+data=client.recv(1000).decode()
+
+print("ECHO: ",data)
+
+client.close()
+
+Echo Server
+
+import socket
+
+import sys
+
+server-socket.socket(socket.AF_INET, socket.S OCK_STREAM)
+
+server_address=("localhost", 10000)
+
+server.bind(server_address)
+
+server.listen(1)
+
+print("Waiting for a connection")
+
+connection, client_address-server.accept()
+
+print("Connection established: ",client_address)
+
+data-connection.recv(1000)
+
+print("Received: ", data)
+
+connection.sendall(data)
+
+connection.close()
+
+server.close()
